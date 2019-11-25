@@ -13,4 +13,6 @@
 
 Route::get('/', 'ArticleController@index');
 Route::get('/blog/{id}', 'ArticleController@article');
+Route::get('/comment/{id}', 'CommentController@display_form');
+Route::post('/comment/post/{id}', 'CommentController@post');
 // Route::get('/blog/{}')

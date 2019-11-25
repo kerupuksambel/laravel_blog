@@ -8,9 +8,11 @@
 </head>
 <body>
     @foreach ($article as $a)
-        <a href='blog/{{ $a->id }}'>
-            <h3>{{ $a->title }}</h3>
-        </a>
+        <h3>    
+            <a href='blog/{{ $a->id }}'>
+                {{ $a->title }}
+            </a>
+        </h3>
         <p>{{ $a->content }}</p>
     @endforeach
 </body>

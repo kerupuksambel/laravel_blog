@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Blog;
 use App\Comment;
+use App\Users;
 
 class ArticleController extends Controller
 {
@@ -19,8 +20,12 @@ class ArticleController extends Controller
 
     public function article($id)
     {
-        $data = Blog::where('id', $id)->get();
+        $user = Users::all();
+        $data = Blog::where('id', $id)->orderBy('created_at')->get();
         $comment = Comment::where('article_id', $id)->get();
+        foreach ($comment as $key => $c){
+            $comment[$key]->username = Users::where('id', $c->creator_id)->select('username')->get()[0]['username'];
+        }
         return view('article', [
             'article' => $data[0],
             'comment' => $comment]
