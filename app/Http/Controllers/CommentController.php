@@ -63,6 +63,21 @@ class CommentController extends Controller
 
     public function delete($id)
     {
-        # code...
+        return view('login', ['id' => $id]);
+    }
+
+    public function delete_post($id, Request $request)
+    {
+        $cid = Comment::where('id', $id)->first()['creator_id'];
+        $user_auth = Users::where('id', $cid)->first();
+        if($user_auth->username == $request->name && $user_auth->password == $request->password){
+            $comment = Comment::find($id);
+            $article_id = $comment->article_id;
+            $comment->delete();
+
+            return redirect('/blog/'.$article_id);
+        }else{
+            return redirect('/');
+        }
     }
 }

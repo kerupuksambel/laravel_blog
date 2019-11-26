@@ -22,5 +22,5 @@ Route::post('/comment/post/{id}', 'CommentController@post');
 Route::get('/comment/edit/{id}', 'CommentController@edit');
 Route::post('/comment/edit/post/{id}', 'CommentController@edit_post');
 
-Route::post('/comment/delete/{id}', 'CommentController@delete');
-// Route::get('/blog/{}')
+Route::get('/comment/delete/{id}', 'CommentController@delete');
+Route::post('/comment/delete/post/{id}', 'CommentController@delete_post');
