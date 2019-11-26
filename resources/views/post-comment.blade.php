@@ -1,27 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Post Comment </title>
-</head>
-<body>
+@extends('template.master')
+@section('title', 'post comment!')
+
+@section('content')
         @if (isset($id))
             <form action="/comment/post/{{ $id }}" method="post">
             {{ csrf_field() }}
-            <input type="text" name="title" placeholder="Judul"><br/>
-            <textarea name="content" cols="30" rows="10" placeholder="Komentar"></textarea><br/>
+            <div class="field">
+                <label class="label">Judul</label>
+                <div class="control">
+                    <input class='input' type="text" name="title" placeholder="Judul"><br/>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Komentar</label>
+                <div class="control">
+                    <textarea class="textarea" name="content" cols="30" rows="10" placeholder="Komentar"></textarea><br/>
+                </div>
+            </div>
         @else
         <form action="/comment/edit/post/{{ $comment_id }}" method="post">
             {{ csrf_field() }}
-            <input type="text" name="title" placeholder="Judul" value="{{ $comment->title }}"><br/>
-            <textarea name="content" cols="30" rows="10" placeholder="Komentar">{{ $comment->content }}</textarea><br/>
+            <div class="field">
+                <label class="label">Judul</label>
+                <div class="control">
+                    <input class='input' type="text" name="title" placeholder="Judul" value="{{ $comment->title }}"><br/>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Komentar</label>
+                <div class="control">
+                    <textarea class='textarea' name="content" cols="30" rows="10" placeholder="Komentar">{{ $comment->content }}</textarea><br/>
+                </div>
+            </div>
         @endif
-        <input type="text" name="name" placeholder="Username"><br/>
-        <input type="password" name="password" placeholder="Password"><br/>
-        <input type="submit" value="Post">
+        <div class="columns">
+            <div class="field column">
+                <label class="label">Username</label>
+                <div class="control">
+                    <input class='input' type="text" name="name" placeholder="Username">
+                </div>
+            </div>
+            <div class="field column">
+                <label class="label">Password</label>
+                <div class="control">
+                    <input class='input' type="text" name="password" placeholder="Password">
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="Post" class="button is-info">
     </form>
-    
-</body>
-</html>
+@endsection

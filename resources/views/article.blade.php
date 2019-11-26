@@ -1,22 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $article->title }} - blog!</title>
-</head>
-<body>
-    <h1>{{ $article->title }}</h1>
-    <p>{{ $article->content }}</p>
-    <a href="/comment/{{ $article->id }}">Tulis Komentar</a>
+@extends('template.master')
+@section('title', $article->title.' - blog!')
+
+@section('content')
+    <h1 id='title'>{{ $article->title }}</h1>
+    <p id="content">{{ $article->content }}</p>
+    <a href="/comment/{{ $article->id }}" class="button">Tulis Komentar</a>
+    <div id="comments">
     @foreach ($comment as $c)
-        <h4>{{ $c->title }}</h4>
-        <small>by <b>{{ $c->username }}</b></small>
-        <p>{{ $c->content }}</p>
-        <small>
-                <a href="/comment/edit/{{ $c->id }}">Edit</a> | <a href="/comment/delete/{{ $c->id }}">Hapus</a>
-        </small>
+        <div class="comment">
+            <h4>{{ $c->title }}</h4>
+            <span>by <b>{{ $c->username }}</b></span>
+            <p>{{ $c->content }}</p>
+            <small>
+                    <a href="/comment/edit/{{ $c->id }}">Edit</a> | <a href="/comment/delete/{{ $c->id }}">Hapus</a>
+            </small>
+        </div>
     @endforeach
-</body>
-</html>
+    </div>
+@endsection
