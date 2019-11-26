@@ -12,12 +12,11 @@
     <a href="/comment/{{ $article->id }}">Tulis Komentar</a>
     @foreach ($comment as $c)
         <h4>{{ $c->title }}</h4>
-        <small>by <b>{{ $c->username }}</b>
+        <small>by <b>{{ $c->username }}</b></small>
         <p>{{ $c->content }}</p>
         <small>
                 <a href="/comment/edit/{{ $c->id }}">Edit</a> | <a href="/comment/delete/{{ $c->id }}">Hapus</a>
         </small>
     @endforeach
-    {{ dd($comment) }}
 </body>
 </html>

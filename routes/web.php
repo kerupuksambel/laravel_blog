@@ -1,5 +1,6 @@
 <?php
-
+// use Symfony\Component\Routing\Route;
+use Illuminate\Support\Facades\Route; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,8 +12,15 @@
 |
 */
 
+
 Route::get('/', 'ArticleController@index');
 Route::get('/blog/{id}', 'ArticleController@article');
-Route::get('/comment/{id}', 'CommentController@display_form');
+
+Route::get('/comment/{id}', 'CommentController@create');
 Route::post('/comment/post/{id}', 'CommentController@post');
+
+Route::get('/comment/edit/{id}', 'CommentController@edit');
+Route::post('/comment/edit/post/{id}', 'CommentController@edit_post');
+
+Route::post('/comment/delete/{id}', 'CommentController@delete');
 // Route::get('/blog/{}')
